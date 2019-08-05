@@ -1,0 +1,45 @@
+﻿@model MagicTournament.ViewModel.LoginVMcs
+@{
+    ViewData["Title"] = "Logar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Logar</h2>
+
+<h4>LoginVMcs</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Logar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Login" class="control-label">Login</label>
+                <input asp-for="Login" class="form-control" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Senha" class="control-label">Senha</label>
+                <input asp-for="Senha" class="form-control" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Logar" class="btn btn-default" />
+                <a class="btn btn-default" href="https://localhost:44345/home/createlogin">
+                    Cadastrar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+@if (ViewData["Message"] != null && ViewData["Message"].ToString().Contains("Usuario logado, Token"))
+{
+<h3>@ViewData["Message"]</h3>
+<a href="/Home/ExibirDecks" class="btn btn-primary">Avançar</a>
+}
+
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+                @section Scripts {
+                    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                }
